@@ -24,7 +24,7 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
         {
             string json = JsonConvert.SerializeObject(headers);
             HttpResponseMessage httpResponse = new();
-            httpResponse.StatusCode = HttpStatusCode.NotFound;
+            httpResponse.StatusCode = statusCode;
             httpResponse.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return httpResponse;
         }
