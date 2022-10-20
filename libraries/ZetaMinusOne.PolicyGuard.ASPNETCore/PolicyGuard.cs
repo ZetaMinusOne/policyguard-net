@@ -24,7 +24,6 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         public async Task<PolicyHeaders> GetPolicyHeadersAsync(string apikey)
         {
             string apiUrl = uri + apikey ?? "";
-            var request = new HttpRequestMessage(HttpMethod.Get, apiUrl);
             var res = await _httpClient.GetAsync(apiUrl).ConfigureAwait(false);
             return res.IsSuccessStatusCode ? new PolicyHeaders() : _headers;
         }
