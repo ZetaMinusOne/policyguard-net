@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace ZetaMinusOne.PolicyGuard.ASPNETCore
 {
@@ -23,9 +25,18 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         // Get Policy Headers
         public async Task<PolicyHeaders> GetPolicyHeadersAsync(string apikey)
         {
-            string apiUrl = uri + apikey ?? "";
+            // Add validation for apiky
+
+            string apiUrl = uri + apikey;
             var res = await _httpClient.GetAsync(apiUrl).ConfigureAwait(false);
-            return res.IsSuccessStatusCode ? new PolicyHeaders() : _headers;
+            if (res.IsSuccessStatusCode)
+            {
+                string data = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
+                // this nee validation??
+                return JsonConvert.DeserializeObject<PolicyHeaders>(data) ?? _headers;
+            }
+
+            return _headers;
         }
 
         // Get Policy Expiration
