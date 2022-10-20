@@ -1,3 +1,8 @@
+using Moq;
+using Moq.Protected;
+using Newtonsoft.Json;
+using System.Text;
+
 namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
 {
     public class PolicyGuardTest
@@ -7,7 +12,11 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
         {
             // Arrange
             var expectedHeaders = new PolicyHeaders();
-            var sut = new PolicyGuard(new HttpClient());
+            var httpResponse = PolicyGuardTestHelper.FakeHttpResponse(
+                expectedHeaders, System.Net.HttpStatusCode.InternalServerError);
+            Mock<HttpMessageHandler> mockHandler = PolicyGuardTestHelper.FakeMessageHandler(httpResponse); 
+            HttpClient httpClient = new(mockHandler.Object);
+            var sut = new PolicyGuard(httpClient);
 
             // Act
             PolicyHeaders actualHeaders = await sut.GetPolicyHeadersAsync(string.Empty);
