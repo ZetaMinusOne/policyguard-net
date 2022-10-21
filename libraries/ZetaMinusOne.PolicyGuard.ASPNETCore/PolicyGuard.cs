@@ -11,8 +11,8 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         private readonly PolicyHeaders _headers;
         private readonly HttpClient _httpClient;
         private const string uri = "https://www.policyguard.io/api/csp/";
-        private const int expiryTime = 10000; 
-        private int lastTime = 0;
+        private const double expiryTime = 10000; 
+        private DateTime lastTime;
         private bool fetching;
 
         public PolicyGuard(HttpClient httpClient)
@@ -35,12 +35,13 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
                     ?? _headers;
             }
 
+            Console.Error.WriteLine($"Failed to get policy header from ${apiUrl}");
             return _headers;
         }
 
-        // Get Policy Expiration
-        // Is Policy Expired
         // Update Policy Headers
+
+
         // Set Policy Headers
         // With Policy Headers
     }
