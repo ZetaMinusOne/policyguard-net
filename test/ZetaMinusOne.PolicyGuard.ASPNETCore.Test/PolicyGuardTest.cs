@@ -13,15 +13,16 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
             PolicyHeaders expectedHeaders, string apiKey, HttpStatusCode statusCode)
         {
             // Arrange
-            var httpResponse = PolicyGuardTestHelper.FakeHttpResponse(
-                expectedHeaders, statusCode);
-            Mock<HttpMessageHandler> mockHandler = PolicyGuardTestHelper.FakeMessageHandler(
-                httpResponse);
+            var httpResponse = 
+                PolicyGuardTestHelper.FakeHttpResponse(expectedHeaders, statusCode);
+            Mock<HttpMessageHandler> mockHandler = 
+                PolicyGuardTestHelper.FakeMessageHandler( httpResponse);
             HttpClient httpClient = new(mockHandler.Object);
             var sut = new PolicyGuard(httpClient);
 
             // Act
-            PolicyHeaders actualHeaders = await sut.GetPolicyHeadersAsync(apiKey);
+            PolicyHeaders actualHeaders = 
+                await sut.GetPolicyHeadersAsync(apiKey);
 
             // Assert
             Assert.Equal(expectedHeaders, actualHeaders);
