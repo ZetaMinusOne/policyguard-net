@@ -28,17 +28,17 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
             Assert.Equal(expectedHeaders, actualHeaders);
         }
 
-        [Fact]
-        public async Task Update_the_policy_headers()
-        {
-            // Arrange
-            var httpClient = new HttpClient();
-            var sut = new PolicyGuard(httpClient);
+        //[Fact]
+        //public async Task Update_the_policy_headers()
+        //{
+        //    // Arrange
+        //    var httpClient = new HttpClient();
+        //    var sut = new PolicyGuard(httpClient);
 
-            // Act
+        //    // Act
 
-            // Assert
+        //    // Assert
 
-        }
+        //}
     }
 }
