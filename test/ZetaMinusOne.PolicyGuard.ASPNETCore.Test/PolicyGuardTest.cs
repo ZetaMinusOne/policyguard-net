@@ -18,14 +18,27 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
             Mock<HttpMessageHandler> mockHandler = 
                 PolicyGuardTestHelper.FakeMessageHandler( httpResponse);
             HttpClient httpClient = new(mockHandler.Object);
-            var sut = new PolicyGuard(httpClient);
+            var sut = new PolicyGuard(httpClient, apiKey);
 
             // Act
             PolicyHeaders actualHeaders = 
-                await sut.GetPolicyHeadersAsync(apiKey);
+                await sut.GetPolicyHeadersAsync();
 
             // Assert
             Assert.Equal(expectedHeaders, actualHeaders);
+        }
+
+        [Fact]
+        public async Task Update_the_policy_headers()
+        {
+            // Arrange
+            var httpClient = new HttpClient();
+            var sut = new PolicyGuard(httpClient);
+
+            // Act
+
+            // Assert
+
         }
     }
 }
