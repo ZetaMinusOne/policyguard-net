@@ -8,7 +8,7 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
 {
     public class PolicyGuard
     {
-        private readonly PolicyHeaders _headers;
+        private PolicyHeaders _headers;
         private readonly HttpClient _httpClient;
         private const string uri = "https://www.policyguard.io/api/csp/";
         private const double expiryTime = 10000; 
@@ -46,9 +46,25 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         #endregion
 
         // Update Policy Headers
+        public async void UpdatePolicyHeadersCache(string apiKey)
+        {
+            // only one fetch at a time
+            if (fetching) return; 
+
+            // set fetching bit to prevent someone else from fetching
+            fetching = true; 
+            // get the headers and update the cache
+            _headers = await GetPolicyHeadersAsync(apiKey);
+            // update our cache expiration
+            lastTime = DateTime.Now;
+            // allow others to update
+            fetching = false;
+        }
+
 
 
         // Set Policy Headers
+
         // With Policy Headers
     }
 }
