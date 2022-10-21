@@ -11,9 +11,7 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         /// <param name="builder"></param>
         /// <returns></returns>
         public static IApplicationBuilder UsePolicyGuardMiddleware(
-            this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<PolicyGuardMiddleware>();
-        }
+            this IApplicationBuilder builder) 
+            => builder.UseMiddleware<PolicyGuardMiddleware>();
     }
 }
