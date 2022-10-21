@@ -8,7 +8,8 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
 {
     public class PolicyGuardTestHelper
     {
-        public static Mock<HttpMessageHandler> FakeMessageHandler(HttpResponseMessage mockedResponse)
+        public static Mock<HttpMessageHandler> FakeMessageHandler(
+            HttpResponseMessage mockedResponse)
         {
             Mock<HttpMessageHandler> mockHandler = new();
             mockHandler.Protected()
@@ -20,12 +21,14 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
             return mockHandler;
         }
 
-        public static HttpResponseMessage FakeHttpResponse(PolicyHeaders headers, HttpStatusCode statusCode)
+        public static HttpResponseMessage FakeHttpResponse(
+            PolicyHeaders headers, HttpStatusCode statusCode)
         {
             string json = JsonConvert.SerializeObject(headers);
             HttpResponseMessage httpResponse = new();
             httpResponse.StatusCode = statusCode;
-            httpResponse.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            httpResponse.Content = new StringContent(
+                json, Encoding.UTF8, "application/json");
             return httpResponse;
         }
 
