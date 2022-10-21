@@ -11,7 +11,7 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         private PolicyHeaders _headers;
         private readonly HttpClient _httpClient;
         private const string uri = "https://www.policyguard.io/api/csp/";
-        private const double expiryTime = 10000; 
+        private const double expiryTime = 10; 
         private DateTime lastTime;
         private bool fetching;
 
