@@ -16,7 +16,7 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         public async Task InvokeAsync(HttpContext context)
         {
             await _next(context);
-            await _policyGuard.WithPolicyGuard(context).ConfigureAwait(false);
+            await _policyGuard.SetPolicyGuardHeaders(context).ConfigureAwait(false);
         }
     }
 
