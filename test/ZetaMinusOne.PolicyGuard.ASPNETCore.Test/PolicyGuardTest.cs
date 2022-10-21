@@ -1,9 +1,5 @@
 using Moq;
-using Moq.Protected;
-using Newtonsoft.Json;
-using System.Collections;
 using System.Net;
-using System.Text;
 
 namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
 {
@@ -11,14 +7,16 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore.Test
     {
         [Theory]
         [MemberData(
-            nameof(PolicyGuardRequestData.GetRequest), 
+            nameof(PolicyGuardRequestData.GetRequest),
             MemberType = typeof(PolicyGuardRequestData))]
-        public async Task RequestPolicyHeadersToPolicyGuardAPI(
+        public async Task Request_policy_headers_from_Policy_Guard_API(
             PolicyHeaders expectedHeaders, string apiKey, HttpStatusCode statusCode)
         {
             // Arrange
-            var httpResponse = PolicyGuardTestHelper.FakeHttpResponse(expectedHeaders, statusCode);
-            Mock<HttpMessageHandler> mockHandler = PolicyGuardTestHelper.FakeMessageHandler(httpResponse); 
+            var httpResponse = PolicyGuardTestHelper.FakeHttpResponse(
+                expectedHeaders, statusCode);
+            Mock<HttpMessageHandler> mockHandler = PolicyGuardTestHelper.FakeMessageHandler(
+                httpResponse);
             HttpClient httpClient = new(mockHandler.Object);
             var sut = new PolicyGuard(httpClient);
 
