@@ -16,5 +16,4 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
             return builder.UseMiddleware<PolicyGuardMiddleware>();
         }
     }
-
 }
