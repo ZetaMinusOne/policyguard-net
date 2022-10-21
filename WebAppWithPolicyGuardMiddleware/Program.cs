@@ -12,13 +12,13 @@ namespace WebAppWithPolicyGuardMiddleware
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            // Register PolicyGuard as Singleton
-            builder.Services.AddSingleton(s =>
-            {
-                var apiKey = configuration.GetValue<string>("policyGuard:apiKey");
-                var httpClient = new HttpClient();
-                return new PolicyGuard(httpClient, apiKey);
-            });
+            // Register PolicyGuard Credential (Api Key) 
+            builder.Services.AddSingleton<PolicyGuardCredential>(s =>
+                new()
+                {
+                    ApiKey = configuration.GetValue<string>("policyGuard:apiKey")
+                }
+            );
 
             var app = builder.Build();
 
@@ -31,8 +31,9 @@ namespace WebAppWithPolicyGuardMiddleware
             }
 
             app.UseHttpsRedirection();
-            // Register PolicyGuardMiddleware
+
             app.UsePolicyGuardMiddleware();
+
             app.UseStaticFiles();
 
             app.UseRouting();

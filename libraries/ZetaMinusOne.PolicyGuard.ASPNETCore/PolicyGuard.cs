@@ -23,7 +23,12 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         }
 
 
-        // Get Policy Headers
+        /// <summary>
+        /// Request the PolicyHeaders from Policy Guard API
+        /// </summary>
+        /// <returns>
+        /// Return a <see cref="PolicyHeaders"/>
+        /// </returns>
         public async Task<PolicyHeaders> GetPolicyHeadersAsync()
         {
             string apiUrl = uri + _apiKey;
@@ -53,6 +58,11 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
             fetching = false;
         }
 
+        /// <summary>
+        /// Update the <see cref="HttpResponse.Headers"/> from <see cref="HttpContext"/>
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns>An <see cref="HttpContext"/> object with the applied Policy Headers</returns>
         public async Task<HttpContext> SetPolicyGuardHeaders(HttpContext context)
         {
             if (IsPolicyExpired()) await UpdatePolicyHeadersCache();
