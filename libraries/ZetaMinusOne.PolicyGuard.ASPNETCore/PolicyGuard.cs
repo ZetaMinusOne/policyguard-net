@@ -25,15 +25,14 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         // Get Policy Headers
         public async Task<PolicyHeaders> GetPolicyHeadersAsync(string apikey)
         {
-            // Add validation for apiky
-
             string apiUrl = uri + apikey;
-            var res = await _httpClient.GetAsync(apiUrl).ConfigureAwait(false);
+            var res = await _httpClient.GetAsync(apiUrl);
+
             if (res.IsSuccessStatusCode)
             {
-                string data = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
-                // this nee validation??
-                return JsonConvert.DeserializeObject<PolicyHeaders>(data) ?? _headers;
+                string data = await res.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<PolicyHeaders>(data) 
+                    ?? _headers;
             }
 
             return _headers;
@@ -44,9 +43,5 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
         // Update Policy Headers
         // Set Policy Headers
         // With Policy Headers
-    }
-
-    public class PolicyHeaders : Dictionary<string, string>
-    {
     }
 }
