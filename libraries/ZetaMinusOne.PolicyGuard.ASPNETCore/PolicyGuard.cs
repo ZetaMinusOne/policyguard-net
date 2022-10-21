@@ -39,6 +39,15 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
             return _headers;
         }
 
+        #region Policy Expiration
+        public DateTime GetPolicyExpiration() => lastTime.AddSeconds(expiryTime);
+
+        public bool IsPolicyExpired()
+        {
+            return DateTime.Now > GetPolicyExpiration();
+        }
+        #endregion
+
         // Update Policy Headers
 
 
