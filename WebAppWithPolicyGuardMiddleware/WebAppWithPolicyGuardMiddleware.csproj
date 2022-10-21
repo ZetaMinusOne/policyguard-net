@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>044d7018-5023-4ece-925b-d715df5b0cc5</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\libraries\ZetaMinusOne.PolicyGuard.ASPNETCore\ZetaMinusOne.PolicyGuard.ASPNETCore.csproj" />
+  </ItemGroup>
+
+</Project>

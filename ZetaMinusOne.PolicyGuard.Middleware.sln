@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZetaMinusOne.PolicyGuard.AS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZetaMinusOne.PolicyGuard.ASPNETCore.Test", "test\ZetaMinusOne.PolicyGuard.ASPNETCore.Test\ZetaMinusOne.PolicyGuard.ASPNETCore.Test.csproj", "{8A3CA9A9-9D36-40CD-B5AC-F9E08B0EE2FF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{4BDA21A2-146E-42FA-876C-4BBBDA596274}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppWithPolicyGuardMiddleware", "WebAppWithPolicyGuardMiddleware\WebAppWithPolicyGuardMiddleware.csproj", "{4A42C29E-8EB2-4E36-AB69-FFDDEC1D5BB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{8A3CA9A9-9D36-40CD-B5AC-F9E08B0EE2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A3CA9A9-9D36-40CD-B5AC-F9E08B0EE2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A3CA9A9-9D36-40CD-B5AC-F9E08B0EE2FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A42C29E-8EB2-4E36-AB69-FFDDEC1D5BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A42C29E-8EB2-4E36-AB69-FFDDEC1D5BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A42C29E-8EB2-4E36-AB69-FFDDEC1D5BB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A42C29E-8EB2-4E36-AB69-FFDDEC1D5BB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0A165AED-07A7-4821-BD87-0AF4B7149182} = {EC383A32-870F-4DF2-A048-167E7337105F}
 		{8A3CA9A9-9D36-40CD-B5AC-F9E08B0EE2FF} = {64A0DA91-70F9-4E74-A8A2-8FB52816E921}
+		{4A42C29E-8EB2-4E36-AB69-FFDDEC1D5BB2} = {4BDA21A2-146E-42FA-876C-4BBBDA596274}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {94A7588F-314A-4235-B932-82DB79F623DD}
