@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\libraries\ZetaMinusOne.PolicyGuard.ASPNETCore\ZetaMinusOne.PolicyGuard.ASPNETCore.csproj" />
+    <ProjectReference Include="..\..\libraries\ZetaMinusOne.PolicyGuard.ASPNETCore\ZetaMinusOne.PolicyGuard.ASPNETCore.csproj" />
   </ItemGroup>
 
 </Project>
