@@ -1,37 +1,38 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Text.Json.Serialization;
+﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace ZetaMinusOne.PolicyGuard.ASPNETCore
 {
     public class PolicyGuard
     {
-        private PolicyHeaders _headers;
         private readonly HttpClient _httpClient;
+        private readonly string _apiKey;
+
         private const string uri = "https://www.policyguard.io/api/csp/";
-        private const double expiryTime = 10; 
+        private const double expiryTime = 10;
+
+        private PolicyHeaders _headers;
         private DateTime lastTime;
         private bool fetching;
 
-        public PolicyGuard(HttpClient httpClient)
+        public PolicyGuard(HttpClient httpClient, string apiKey)
         {
             _headers = new();
             _httpClient = httpClient;
+            _apiKey = apiKey;
         }
 
 
         // Get Policy Headers
-        public async Task<PolicyHeaders> GetPolicyHeadersAsync(string apikey)
+        public async Task<PolicyHeaders> GetPolicyHeadersAsync()
         {
-            string apiUrl = uri + apikey;
+            string apiUrl = uri + _apiKey;
             var res = await _httpClient.GetAsync(apiUrl);
 
             if (res.IsSuccessStatusCode)
             {
                 string data = await res.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<PolicyHeaders>(data) 
+                return JsonConvert.DeserializeObject<PolicyHeaders>(data)
                     ?? _headers;
             }
 
@@ -39,32 +40,27 @@ namespace ZetaMinusOne.PolicyGuard.ASPNETCore
             return _headers;
         }
 
-        #region Policy Expiration
         public DateTime GetPolicyExpiration() => lastTime.AddSeconds(expiryTime);
 
         public bool IsPolicyExpired() => DateTime.Now > GetPolicyExpiration();
-        #endregion
 
-        // Update Policy Headers
-        public async void UpdatePolicyHeadersCache(string apiKey)
+        public async Task UpdatePolicyHeadersCache()
         {
-            // only one fetch at a time
-            if (fetching) return; 
-
-            // set fetching bit to prevent someone else from fetching
-            fetching = true; 
-            // get the headers and update the cache
-            _headers = await GetPolicyHeadersAsync(apiKey);
-            // update our cache expiration
+            if (fetching) return;
+            fetching = true;
+            _headers = await GetPolicyHeadersAsync();
             lastTime = DateTime.Now;
-            // allow others to update
             fetching = false;
         }
 
+        public async Task<HttpContext> SetPolicyGuardHeaders(HttpContext context)
+        {
+            if (IsPolicyExpired()) await UpdatePolicyHeadersCache();
 
+            foreach (var header in _headers)
+                context.Response.Headers[header.Key] = header.Value;
 
-        // Set Policy Headers
-
-        // With Policy Headers
+            return context;
+        }
     }
 }
