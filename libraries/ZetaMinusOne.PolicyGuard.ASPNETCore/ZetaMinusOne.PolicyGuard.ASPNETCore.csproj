@@ -4,7 +4,30 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>Policy Guard ASP.NET Core Middleware</Title>
+    <Company>ZetaMinusOne</Company>
+    <Authors>sempjc</Authors>
+    <Product>Policy Guard</Product>
+    <PackageProjectUrl>https://www.policyguard.io</PackageProjectUrl>
+    <PackageIcon>policy-guard-logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/ZetaMinusOne/policyguard-net</RepositoryUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Description>An ASP.NET Core middleware for Policy Guard</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageTags>policy guard; asp.net; middleware;</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\policy-guard-logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
