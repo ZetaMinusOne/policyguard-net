@@ -12,6 +12,7 @@ and defend your website from cross site scripting and other website vulnerabilit
 
 ## Installation
 * [NuGet Package][2]
+* [Visual Studio][3]
 
 ## How to use the Project
 
@@ -19,3 +20,4 @@ and defend your website from cross site scripting and other website vulnerabilit
 
 [1]: https://www.policyguard.io/
 [2]: https://www.nuget.org/packages/ZetaMinusOne.PolicyGuard.ASPNETCore
+[3]: https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio
