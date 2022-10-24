@@ -19,7 +19,7 @@ jobs:
   build:
     env: 
       BUILD_CONFIG: 'Release'
-      SOLUTION: "ZetaMinusOne.PolicyGuard.Middleware.sln"
+      SOLUTION: 'ZetaMinusOne.PolicyGuard.Middleware.sln' 
 
     runs-on: windows-latest
 
