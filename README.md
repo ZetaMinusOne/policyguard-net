@@ -4,8 +4,9 @@
 An ASP.NET Core Middleware for [Policy Guard][1]
 
 ## Description
-[Policy Guard][1] is a security platform that allows you to quickly and easily 
-deploy defense in depth against cross site scripting and other website vulnerabilities, all while following privacy best practices.
+
+Use this middleware to easily connect to your [Policy Guard][1] API 
+and defend your website from cross site scripting and other website vulnerabilities.
 
 <!-- ## Table of Contents -->
 
