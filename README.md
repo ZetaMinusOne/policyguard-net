@@ -1,7 +1,7 @@
 [![.NET CI/CD](https://github.com/ZetaMinusOne/policyguard-net/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/ZetaMinusOne/policyguard-net/actions/workflows/dotnet-ci.yml)
 
 # PolicyGuard ASP.NET Core Middleware
-An ASP.NET Core Middleware for [[Policy Guard][1]
+An ASP.NET Core Middleware for [Policy Guard][1]
 
 ## Description
 [Policy Guard][1] is a security platform that allows you to quickly and easily 
