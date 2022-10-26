@@ -39,7 +39,7 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Restore dependencies
-      run: dotnet restore $SOLUTION
+      run: dotnet restore $env:SOLUTION
       
     - name: Build
       run: dotnet build $env:SOLUTION --configuration $env:BUILD_CONFIG -p:Version=$env:BUILD_VERSION --no-restore
